@@ -1,0 +1,3 @@
+import { defineConfig } from '@playwright/test'
+export default defineConfig({ testDir: 'e2e', timeout: 60000, use: { baseURL: process.env.BASE ?? 'http://localhost:4173', launchOptions: process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH, args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream', '--no-sandbox', '--no-zygote', '--single-process', '--disable-gpu', '--disable-dev-shm-usage'] } : {} },
+  webServer: process.env.BASE ? undefined : { command: 'npm run build && npm run preview -- --port 4173 --strictPort', url: 'http://localhost:4173', reuseExistingServer: true, timeout: 180000 } })
